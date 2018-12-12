@@ -5,7 +5,7 @@ public class Pixel {
     private int posisiX;
     private int posisiY;
     private Image image; //untuk membuat gambar dalam pixel posisi xy
-    private int Jarak = 20; //jika sudah menentukaan  jarak/pixel 20 semua gambar harus di set 20x20 pixel
+    private int Jarak = 40; //jika sudah menentukaan  jarak/pixel 20 semua gambar harus di set 20x20 pixel
     
     public Pixel(int x, int y) {
         this.posisiX = x;

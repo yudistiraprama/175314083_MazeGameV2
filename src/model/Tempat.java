@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -14,54 +16,72 @@ import javax.swing.JPanel;
 public class Tempat extends JPanel {
 
     private ArrayList tembok = new ArrayList();
-    private ArrayList gawang = new ArrayList();
     private ArrayList tempat = new ArrayList();
     private Pemain pemain;
+    private Gawang gawang;
     private int lebar = 0;
     private int tinggi = 0;
-    private int jarak = 20;
+    private int jarak = 40;
 
     private File Alamatpeta;
     private ArrayList Allperintah = new ArrayList();
 
+    private String isi;
+
     public Tempat(File file) {
-        setPeta(file);
+        bacaKonfigurasi(file);
     }
 
-    public void setPeta(File file) {
+    public void bacaKonfigurasi(File file) {
         try {
             if (file != null) {
                 FileInputStream input = new FileInputStream(file);
                 Alamatpeta = file;
+                String hasilBaca = "";
                 int posisiX = 0;
                 int posisiY = 0;
                 Tembok wall;
-                Gawang a;
                 int data;
                 while ((data = input.read()) != -1) {
                     char item = (char) data;
                     if (item == '\n') {
+                        hasilBaca = hasilBaca + (char) data;
                         posisiY += jarak;
                         lebar = posisiX;
                         posisiX = 0;
                     } else if (item == '#') {
+                        hasilBaca = hasilBaca + (char) data;
                         wall = new Tembok(posisiX, posisiY);
                         tembok.add(wall);
                         posisiX += jarak;
                     } else if (item == 'o') {
-                        a = new Gawang(posisiX, posisiY);
-                        gawang.add(a);
+                        hasilBaca = hasilBaca + (char) data;
+                        gawang = new Gawang(posisiX, posisiY);
                         posisiX += jarak;
                     } else if (item == '@') {
+                        hasilBaca = hasilBaca + (char) data;
                         pemain = new Pemain(posisiX, posisiY);
                         posisiX += jarak;
                     } else if (item == '.') {
+                        hasilBaca = hasilBaca + (char) data;
                         posisiX += jarak;
                     }
                     tinggi = posisiY;
                 }
+                setIsi(hasilBaca);
             }
+        } catch (IOException ex) {
+            Logger.getLogger(Tempat.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
+    public void simpanKonfigurasi(File file) {
+        try {
+            FileOutputStream fos = new FileOutputStream(file);
+            fos.write(isi.getBytes());
+            fos.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Tempat.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(Tempat.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -70,11 +90,9 @@ public class Tempat extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);	   // Hapus background
-        // Tempat Gambar:
-        g.setColor(new Color(255, 255, 255));//set panel warna putih
-        g.fillRect(0, 0, this.tinggi, this.lebar);// set tinggi lebar sesuai konfigurasi
+        g.fillRect(0, 0, this.getTinggi(), this.getLebar());// set tinggi lebar sesuai konfigurasi
         tempat.addAll(tembok);
-        tempat.addAll(gawang);
+        tempat.add(gawang);
         tempat.add(pemain);
         for (int i = 0; i < tempat.size(); i++) {
             if (tempat.get(i) != null) {
@@ -93,7 +111,7 @@ public class Tempat extends JPanel {
     }
 
     public void PerintahGerak(String input) {
-        String in[] = input.split("");
+        String in[] = input.split(" ");
         if (in.length > 2) {
             JOptionPane.showMessageDialog(null, "Jumlah kata lebih dari 2");
         } else if (in.length == 2) {
@@ -188,19 +206,16 @@ public class Tempat extends JPanel {
     }
 
     public void isCompleted() {
-        for (int i = 0; i < gawang.size(); i++) {
-            Gawang gaw = (Gawang) gawang.get(i);//ambil posisi gawang
-            if (pemain.getPosisiX() == gaw.getPosisiX() && pemain.getPosisiY() == gaw.getPosisiY()) {//cek posisi bola sama dengan bola.
-                JOptionPane.showMessageDialog(null, "Selamat anda berhasil menyelesaikan game ini");
-            }
+        if (pemain.getPosisiX() == gawang.getPosisiX() && pemain.getPosisiY() == gawang.getPosisiY()) {
+            JOptionPane.showMessageDialog(null, "Selamat anda berhasil menyelesaikan game ini");
+            tempat.clear();
         }
-        tempat.clear();
     }
 
     public void undo() {
         for (int i = Allperintah.size() - 1; i >= 0; i--) {
             String input = Allperintah.get(i).toString();
-            String[] undo = input.split("");
+            String[] undo = input.split(" ");
             if (undo[1].equalsIgnoreCase("l")) {
                 if (cekObjekNabrakTembok(pemain, "r")) {
                     return;
@@ -241,12 +256,12 @@ public class Tempat extends JPanel {
     public void redo() {
         for (int i = Allperintah.size() - 1; i >= 0; i--) {
             String input = Allperintah.get(i).toString();
-            String[] redo = input.split("");
+            String[] redo = input.split(" ");
             if (redo[1].equalsIgnoreCase("r")) {
                 if (cekObjekNabrakTembok(pemain, "l")) {
                     return;
                 } else {
-                    pemain.Gerak((Integer.valueOf(redo[0])*jarak), 0);
+                    pemain.Gerak((Integer.valueOf(redo[0]) * jarak), 0);
                     repaint();
                 }
                 break;
@@ -254,7 +269,7 @@ public class Tempat extends JPanel {
                 if (cekObjekNabrakTembok(pemain, "r")) {
                     return;
                 } else {
-                    pemain.Gerak((Integer.valueOf(redo[0])*-jarak), 0);
+                    pemain.Gerak((Integer.valueOf(redo[0]) * -jarak), 0);
                     repaint();
                 }
                 break;
@@ -279,12 +294,18 @@ public class Tempat extends JPanel {
 
     }
 
+    public void jalanPintas() {
+        String[] pintas = {"3 r", "3 d", "2 r", "1 d"};
+        for (int i = 0; i < pintas.length; i++) {
+            PerintahGerak(pintas[i]);
+        }
+    }
+
     public void restartLevel() {
         Allperintah.clear();//hapus semua perintah yang tersimpan
-        gawang.clear();//hapus gawang
         tembok.clear();//hapus tembok
         tempat.clear();//hapus map
-        setPeta(Alamatpeta);//set ulang gambar peta
+        bacaKonfigurasi(Alamatpeta);//set ulang gambar peta
         repaint();//gambar ulang
     }
 
@@ -296,4 +317,35 @@ public class Tempat extends JPanel {
         return bantu;
     }
 
+    public Pemain getPemain() {
+        return pemain;
+    }
+
+    public void setPemain(Pemain pemain) {
+        this.pemain = pemain;
+    }
+
+    public Gawang getGawang() {
+        return gawang;
+    }
+
+    public void setGawang(Gawang gawang) {
+        this.gawang = gawang;
+    }
+
+    public String getIsi() {
+        return isi;
+    }
+
+    public void setIsi(String isi) {
+        this.isi = isi;
+    }
+
+    public ArrayList getTempat() {
+        return tempat;
+    }
+
+    public void setTempat(ArrayList tempat) {
+        this.tempat = tempat;
+    }
 }
