@@ -4,6 +4,7 @@ import model.Tempat;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+
 public class MainMazeGame extends javax.swing.JFrame {
 
     Tempat tempat;
@@ -74,6 +75,11 @@ public class MainMazeGame extends javax.swing.JFrame {
         });
 
         redoButton.setText("REDO");
+        redoButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                redoButtonActionPerformed(evt);
+            }
+        });
 
         gameMenu.setText("Game");
         gameMenu.addActionListener(new java.awt.event.ActionListener() {
@@ -167,8 +173,8 @@ public class MainMazeGame extends javax.swing.JFrame {
     }//GEN-LAST:event_openMenuItemActionPerformed
 
     private void perintahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_perintahActionPerformed
-  
-        tempat.PerintahGerak(perintah.getText()); 
+
+        tempat.PerintahGerak(perintah.getText());
         perintah.setText("");
     }//GEN-LAST:event_perintahActionPerformed
 
@@ -178,7 +184,7 @@ public class MainMazeGame extends javax.swing.JFrame {
     }//GEN-LAST:event_exitMenuItemActionPerformed
 
     private void gameMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gameMenuActionPerformed
-        
+
     }//GEN-LAST:event_gameMenuActionPerformed
 
     private void btnRestarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestarActionPerformed
@@ -187,7 +193,7 @@ public class MainMazeGame extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRestarActionPerformed
 
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
-        tempat.PerintahGerak(perintah.getText()); 
+        tempat.PerintahGerak(perintah.getText());
         perintah.setText("");
     }//GEN-LAST:event_okButtonActionPerformed
 
@@ -195,11 +201,15 @@ public class MainMazeGame extends javax.swing.JFrame {
         tempat.undo();
     }//GEN-LAST:event_undoButtonActionPerformed
 
+    private void redoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_redoButtonActionPerformed
+        tempat.redo();
+    }//GEN-LAST:event_redoButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-       
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MainMazeGame().setVisible(true);

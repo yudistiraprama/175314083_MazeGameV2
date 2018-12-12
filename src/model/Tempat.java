@@ -97,7 +97,7 @@ public class Tempat extends JPanel {
         if (in.length > 2) {
             JOptionPane.showMessageDialog(null, "Jumlah kata lebih dari 2");
         } else if (in.length == 2) {
-            if (in[1].matches("[udrlz]")) {
+            if (in[1].matches("[udrl]")) {
                 Allperintah.add(input);
                 if (in[1].equalsIgnoreCase("u")) {
                     for (int i = 0; i < Integer.parseInt(String.valueOf(in[0])); i++) {
@@ -136,10 +136,7 @@ public class Tempat extends JPanel {
                             repaint();
                         }
                     }
-                } else if (in[1].equalsIgnoreCase("z")) {
-                    for (int i = 0; i < Integer.parseInt(String.valueOf(in[0])); i++) {
-                        undo();
-                    }
+
                 } else {
                     JOptionPane.showMessageDialog(null, "Kata Tidak Dikenal");
                 }
@@ -191,8 +188,8 @@ public class Tempat extends JPanel {
     }
 
     public void isCompleted() {
-        for (int j = 0; j < gawang.size(); j++) {
-            Gawang gaw = (Gawang) gawang.get(j);//ambil posisi gawang
+        for (int i = 0; i < gawang.size(); i++) {
+            Gawang gaw = (Gawang) gawang.get(i);//ambil posisi gawang
             if (pemain.getPosisiX() == gaw.getPosisiX() && pemain.getPosisiY() == gaw.getPosisiY()) {//cek posisi bola sama dengan bola.
                 JOptionPane.showMessageDialog(null, "Selamat anda berhasil menyelesaikan game ini");
             }
@@ -208,31 +205,69 @@ public class Tempat extends JPanel {
                 if (cekObjekNabrakTembok(pemain, "r")) {
                     return;
                 } else {
-                    pemain.Gerak(jarak, 0);
+                    pemain.Gerak((Integer.valueOf(undo[0]) * jarak) - jarak, 0);
                     repaint();
                 }
                 break;
             } else if (undo[1].equalsIgnoreCase("r")) {
-                if (cekObjekNabrakTembok(pemain,
-                        "l")) {
+                if (cekObjekNabrakTembok(pemain, "l")) {
                     return;
                 } else {
-                    pemain.Gerak(-jarak, 0);
+                    pemain.Gerak((Integer.valueOf(undo[0]) * -jarak) + jarak, 0);
                     repaint();
                 }
                 break;
             } else if (undo[1].equalsIgnoreCase("u")) {
-                if (cekObjekNabrakTembok(pemain,
-                        "d")) {
+                if (cekObjekNabrakTembok(pemain, "d")) {
+                    return;
+                } else {
+                    pemain.Gerak(0, (Integer.valueOf(undo[0]) * jarak));
+                    repaint();
+                }
+                break;
+            } else if (undo[1].equalsIgnoreCase("d")) {
+                if (cekObjekNabrakTembok(pemain, "u")) {
+                    return;
+                } else {
+                    pemain.Gerak(0, (Integer.valueOf(undo[0]) * -jarak));
+                    repaint();
+                }
+                break;
+            }
+        }
+
+    }
+
+    public void redo() {
+        for (int i = Allperintah.size() - 1; i >= 0; i--) {
+            String input = Allperintah.get(i).toString();
+            String[] redo = input.split("");
+            if (redo[1].equalsIgnoreCase("r")) {
+                if (cekObjekNabrakTembok(pemain, "l")) {
+                    return;
+                } else {
+                    pemain.Gerak((Integer.valueOf(redo[0])*jarak), 0);
+                    repaint();
+                }
+                break;
+            } else if (redo[1].equalsIgnoreCase("l")) {
+                if (cekObjekNabrakTembok(pemain, "r")) {
+                    return;
+                } else {
+                    pemain.Gerak((Integer.valueOf(redo[0])*-jarak), 0);
+                    repaint();
+                }
+                break;
+            } else if (redo[1].equalsIgnoreCase("d")) {
+                if (cekObjekNabrakTembok(pemain, "u")) {
                     return;
                 } else {
                     pemain.Gerak(0, jarak);
                     repaint();
                 }
                 break;
-            } else if (undo[1].equalsIgnoreCase("d")) {
-                if (cekObjekNabrakTembok(pemain,
-                        "u")) {
+            } else if (redo[1].equalsIgnoreCase("u")) {
+                if (cekObjekNabrakTembok(pemain, "d")) {
                     return;
                 } else {
                     pemain.Gerak(0, -jarak);
