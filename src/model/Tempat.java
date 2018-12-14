@@ -18,7 +18,7 @@ public class Tempat extends JPanel {
     private ArrayList tembok = new ArrayList();
     private ArrayList tempat = new ArrayList();
     private Pemain pemain;
-    private Target gawang;
+    private Target target;
     private int lebar = 0;
     private int tinggi = 0;
     private int jarak = 40;
@@ -26,6 +26,8 @@ public class Tempat extends JPanel {
     private File Alamatpeta;
     private ArrayList Allperintah = new ArrayList();
     private ArrayList<String> simpanPerintah = new ArrayList<String>();
+    private ArrayList<String> undo = new ArrayList<String>();
+    private ArrayList<String> redo = new ArrayList<String>();
 
     private String isi;
 
@@ -57,7 +59,7 @@ public class Tempat extends JPanel {
                         posisiX += jarak;
                     } else if (item == 'o') {
                         hasilBaca = hasilBaca + (char) data;
-                        gawang = new Target(posisiX, posisiY);
+                        target = new Target(posisiX, posisiY);
                         posisiX += jarak;
                     } else if (item == '@') {
                         hasilBaca = hasilBaca + (char) data;
@@ -93,7 +95,7 @@ public class Tempat extends JPanel {
         super.paintComponent(g);	   // Hapus background
         g.fillRect(0, 0, this.getLebar(), this.getTinggi());// set tinggi lebar sesuai konfigurasi
         tempat.addAll(tembok);
-        tempat.add(gawang);
+        tempat.add(target);
         tempat.add(pemain);
         for (int i = 0; i < tempat.size(); i++) {
             if (tempat.get(i) != null) {
@@ -207,7 +209,7 @@ public class Tempat extends JPanel {
     }
 
     public void isCompleted() {
-        if (pemain.getPosisiX() == gawang.getPosisiX() && pemain.getPosisiY() == gawang.getPosisiY()) {
+        if (pemain.getPosisiX() == target.getPosisiX() && pemain.getPosisiY() == target.getPosisiY()) {
             JOptionPane.showMessageDialog(null, "Selamat anda berhasil menyelesaikan game ini dengan " + this.getAllperintah().size() + " langkah");
             tempat.clear();
         }
@@ -302,8 +304,23 @@ public class Tempat extends JPanel {
 
     }
 
-    public void jalanPintas() {
-        String[] pintas = {"3 r", "3 d", "2 r", "1 d"};
+    public String[] jalanPintas1() {
+        String[] pintas = {"3 r","3 d","2 r","1 d"};
+        for (int i = 0; i < pintas.length; i++) {
+            PerintahGerak(pintas[i]);
+        }
+        return pintas;
+    }
+    
+    public void jalanPintas2() {
+        String[] pintas = {"2 r","4 u","3 r"};
+        for (int i = 0; i < pintas.length; i++) {
+            PerintahGerak(pintas[i]);
+        }
+    }
+    
+    public void jalanPintas3() {
+        String[] pintas = {"1 d","2 l","3 d","3 l"};
         for (int i = 0; i < pintas.length; i++) {
             PerintahGerak(pintas[i]);
         }
@@ -339,11 +356,11 @@ public class Tempat extends JPanel {
     }
 
     public Target getGawang() {
-        return gawang;
+        return target;
     }
 
     public void setGawang(Target gawang) {
-        this.gawang = gawang;
+        this.target = gawang;
     }
 
     public String getIsi() {

@@ -41,10 +41,11 @@ public class MainMazeGame extends javax.swing.JFrame {
         menuBar = new javax.swing.JMenuBar();
         gameMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
+        mapMenu = new javax.swing.JMenu();
         map1MenuItem = new javax.swing.JMenuItem();
         map2MenuItem = new javax.swing.JMenuItem();
-        saveMenuItem = new javax.swing.JMenuItem();
+        map3MenuItem = new javax.swing.JMenuItem();
+        caraMainMenuItem = new javax.swing.JMenuItem();
         exitMenuItem = new javax.swing.JMenuItem();
 
         jMenu1.setText("jMenu1");
@@ -142,7 +143,8 @@ public class MainMazeGame extends javax.swing.JFrame {
         });
         gameMenu.add(openMenuItem);
 
-        jMenu3.setText("Map");
+        mapMenu.setText("Map");
+        mapMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         map1MenuItem.setText("Map 1");
         map1MenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -150,7 +152,7 @@ public class MainMazeGame extends javax.swing.JFrame {
                 map1MenuItemActionPerformed(evt);
             }
         });
-        jMenu3.add(map1MenuItem);
+        mapMenu.add(map1MenuItem);
 
         map2MenuItem.setText("Map 2");
         map2MenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -158,19 +160,27 @@ public class MainMazeGame extends javax.swing.JFrame {
                 map2MenuItemActionPerformed(evt);
             }
         });
-        jMenu3.add(map2MenuItem);
+        mapMenu.add(map2MenuItem);
 
-        gameMenu.add(jMenu3);
-
-        saveMenuItem.setText("Save");
-        saveMenuItem.addActionListener(new java.awt.event.ActionListener() {
+        map3MenuItem.setText("Map 3");
+        map3MenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveMenuItemActionPerformed(evt);
+                map3MenuItemActionPerformed(evt);
             }
         });
-        gameMenu.add(saveMenuItem);
+        mapMenu.add(map3MenuItem);
 
-        exitMenuItem.setText("exit");
+        gameMenu.add(mapMenu);
+
+        caraMainMenuItem.setText("Cara Bermain");
+        caraMainMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                caraMainMenuItemActionPerformed(evt);
+            }
+        });
+        gameMenu.add(caraMainMenuItem);
+
+        exitMenuItem.setText("Exit");
         exitMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 exitMenuItemActionPerformed(evt);
@@ -215,7 +225,7 @@ public class MainMazeGame extends javax.swing.JFrame {
                         .addComponent(langkahLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(langkahText, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -246,7 +256,7 @@ public class MainMazeGame extends javax.swing.JFrame {
 
         pixelPanel.getAccessibleContext().setAccessibleName("");
 
-        setSize(new java.awt.Dimension(764, 561));
+        setSize(new java.awt.Dimension(776, 561));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -306,23 +316,24 @@ public class MainMazeGame extends javax.swing.JFrame {
     }//GEN-LAST:event_redoButtonActionPerformed
 
     private void pintasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pintasButtonActionPerformed
-        tempat.jalanPintas();
-        tempat.isCompleted();
-    }//GEN-LAST:event_pintasButtonActionPerformed
-
-    private void saveMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveMenuItemActionPerformed
-        JFileChooser fc = new JFileChooser();
-        fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
-        int returnVal = fc.showSaveDialog(null);
-        if (returnVal == JFileChooser.APPROVE_OPTION) {
-            tempat.setIsi(tempat.getIsi());
-            tempat.simpanKonfigurasi(fc.getSelectedFile());
+        if (map1MenuItem.isSelected() == false) {
+            tempat.jalanPintas1();
+            tempat.isCompleted();
+            map1MenuItem.setSelected(true);
+        } else if (map2MenuItem.isSelected() == false) {
+            tempat.jalanPintas2();
+            tempat.isCompleted();
+            map2MenuItem.setSelected(true);
+        } else if (map3MenuItem.isSelected() == false) {
+            tempat.jalanPintas3();
+            tempat.isCompleted();
+            map3MenuItem.setSelected(true);
         }
-    }//GEN-LAST:event_saveMenuItemActionPerformed
+    }//GEN-LAST:event_pintasButtonActionPerformed
 
     private void map1MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_map1MenuItemActionPerformed
         pixelPanel.removeAll();
-        tempat = new Tempat(new File("tempat.txt"));
+        tempat = new Tempat(new File("map1.txt"));
         pixelPanel.add(tempat);
         tempat.setSize(tempat.getLebar(), tempat.getTinggi());
         //setelah diset panel pixel, kita letakkan posisi tempat sekoban
@@ -332,11 +343,12 @@ public class MainMazeGame extends javax.swing.JFrame {
         int x = (lebar - tempat.getWidth()) / 2;
         int y = (tinggi - tempat.getHeight()) / 2;
         tempat.setLocation(x, y);
+        langkahText.setText("0");
     }//GEN-LAST:event_map1MenuItemActionPerformed
 
     private void map2MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_map2MenuItemActionPerformed
         pixelPanel.removeAll();
-        tempat = new Tempat(new File("tempat2.txt"));
+        tempat = new Tempat(new File("map2.txt"));
         pixelPanel.add(tempat);
         tempat.setSize(tempat.getLebar(), tempat.getTinggi());
         //setelah diset panel pixel, kita letakkan posisi tempat sekoban
@@ -346,6 +358,7 @@ public class MainMazeGame extends javax.swing.JFrame {
         int x = (lebar - tempat.getWidth()) / 2;
         int y = (tinggi - tempat.getHeight()) / 2;
         tempat.setLocation(x, y);
+        langkahText.setText("0");
     }//GEN-LAST:event_map2MenuItemActionPerformed
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
@@ -356,6 +369,49 @@ public class MainMazeGame extends javax.swing.JFrame {
     private void loadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadButtonActionPerformed
         tempat.load();
     }//GEN-LAST:event_loadButtonActionPerformed
+
+    private void map3MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_map3MenuItemActionPerformed
+        pixelPanel.removeAll();
+        tempat = new Tempat(new File("map3.txt"));
+        pixelPanel.add(tempat);
+        tempat.setSize(tempat.getLebar(), tempat.getTinggi());
+        //setelah diset panel pixel, kita letakkan posisi tempat sekoban
+        int lebar = pixelPanel.getWidth();
+        int tinggi = pixelPanel.getHeight();
+        //mendapatkan titik koordinat x,y
+        int x = (lebar - tempat.getWidth()) / 2;
+        int y = (tinggi - tempat.getHeight()) / 2;
+        tempat.setLocation(x, y);
+        langkahText.setText("0");
+    }//GEN-LAST:event_map3MenuItemActionPerformed
+
+    private void caraMainMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_caraMainMenuItemActionPerformed
+        JOptionPane.showMessageDialog(null, "SELAMAT DATANG DI PERMAINAN MAZE GAME !\n"
+                + "\n"
+                + "Gunakan perintah pada keyboard untuk \n"
+                + "menggerakkan pemain menuju tujuannya\n"
+                + "\n"
+                + "Format perintah :\n"
+                + "N X\n"
+                + "\n"
+                + "N = jumlah langkah\n"
+                + "X = arah gerakan\n"
+                + "\n"
+                + "Arah Gerakan :\n"
+                + "U = up/naik\n"
+                + "D = down/turun\n"
+                + "R = right/kanan\n"
+                + "L = left/kiri\n"
+                + "\n"
+                + "Kalian dapat memilih map permainan \n"
+                + "pada menu map yang tersedia.\n"
+                + "\n"
+                + "anda dapat mereset, mengsave dan \n"
+                + "mengload permainan untuk satu map yang\n"
+                + "sama.\n"
+                + "\n"
+                + "      ===== SELAMAT BERMAIN ===== ");
+    }//GEN-LAST:event_caraMainMenuItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -371,13 +427,13 @@ public class MainMazeGame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRestar;
+    private javax.swing.JMenuItem caraMainMenuItem;
     private java.awt.Choice choice1;
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu gameMenu;
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JSeparator jSeparator1;
@@ -386,6 +442,8 @@ public class MainMazeGame extends javax.swing.JFrame {
     private javax.swing.JButton loadButton;
     private javax.swing.JMenuItem map1MenuItem;
     private javax.swing.JMenuItem map2MenuItem;
+    private javax.swing.JMenuItem map3MenuItem;
+    private javax.swing.JMenu mapMenu;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JButton okButton;
     private javax.swing.JMenuItem openMenuItem;
@@ -394,7 +452,6 @@ public class MainMazeGame extends javax.swing.JFrame {
     private javax.swing.JPanel pixelPanel;
     private javax.swing.JButton redoButton;
     private javax.swing.JButton saveButton;
-    private javax.swing.JMenuItem saveMenuItem;
     private javax.swing.JButton undoButton;
     // End of variables declaration//GEN-END:variables
 }
