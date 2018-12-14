@@ -3,7 +3,7 @@ package model;
 import java.awt.Image;
 import java.net.URL;
 import javax.swing.ImageIcon;
-public class Tembok extends Pixel{
+public class Tembok extends Sel{
     public Tembok(int x, int y){
         super(x,y);
         

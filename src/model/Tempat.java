@@ -18,13 +18,14 @@ public class Tempat extends JPanel {
     private ArrayList tembok = new ArrayList();
     private ArrayList tempat = new ArrayList();
     private Pemain pemain;
-    private Gawang gawang;
+    private Target gawang;
     private int lebar = 0;
     private int tinggi = 0;
     private int jarak = 40;
 
     private File Alamatpeta;
     private ArrayList Allperintah = new ArrayList();
+    private ArrayList<String> simpanPerintah = new ArrayList<String>();
 
     private String isi;
 
@@ -56,7 +57,7 @@ public class Tempat extends JPanel {
                         posisiX += jarak;
                     } else if (item == 'o') {
                         hasilBaca = hasilBaca + (char) data;
-                        gawang = new Gawang(posisiX, posisiY);
+                        gawang = new Target(posisiX, posisiY);
                         posisiX += jarak;
                     } else if (item == '@') {
                         hasilBaca = hasilBaca + (char) data;
@@ -90,13 +91,13 @@ public class Tempat extends JPanel {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);	   // Hapus background
-        g.fillRect(0, 0, this.getTinggi(), this.getLebar());// set tinggi lebar sesuai konfigurasi
+        g.fillRect(0, 0, this.getLebar(), this.getTinggi());// set tinggi lebar sesuai konfigurasi
         tempat.addAll(tembok);
         tempat.add(gawang);
         tempat.add(pemain);
         for (int i = 0; i < tempat.size(); i++) {
             if (tempat.get(i) != null) {
-                Pixel item = (Pixel) tempat.get(i);//map diterjemahkan dalam kelas pixel.
+                Sel item = (Sel) tempat.get(i);//map diterjemahkan dalam kelas pixel.
                 g.drawImage(item.getImage(), item.getPosisiX(), item.getPosisiY(), this);//proses gambar di panel
             }
         }
@@ -166,7 +167,7 @@ public class Tempat extends JPanel {
         }
     }
 
-    private boolean cekObjekNabrakTembok(Pixel pemain, String input) {
+    private boolean cekObjekNabrakTembok(Sel pemain, String input) {
         boolean bantu = false;
         if (input.equalsIgnoreCase("l")) {
             for (int i = 0; i < tembok.size(); i++) {
@@ -207,7 +208,7 @@ public class Tempat extends JPanel {
 
     public void isCompleted() {
         if (pemain.getPosisiX() == gawang.getPosisiX() && pemain.getPosisiY() == gawang.getPosisiY()) {
-            JOptionPane.showMessageDialog(null, "Selamat anda berhasil menyelesaikan game ini");
+            JOptionPane.showMessageDialog(null, "Selamat anda berhasil menyelesaikan game ini dengan " + this.getAllperintah().size() + " langkah");
             tempat.clear();
         }
     }
@@ -220,7 +221,7 @@ public class Tempat extends JPanel {
                 if (cekObjekNabrakTembok(pemain, "r")) {
                     return;
                 } else {
-                    pemain.Gerak((Integer.valueOf(undo[0]) * jarak) - jarak, 0);
+                    pemain.Gerak((Integer.valueOf(undo[0]) * jarak), 0);
                     repaint();
                 }
                 break;
@@ -228,7 +229,7 @@ public class Tempat extends JPanel {
                 if (cekObjekNabrakTembok(pemain, "l")) {
                     return;
                 } else {
-                    pemain.Gerak((Integer.valueOf(undo[0]) * -jarak) + jarak, 0);
+                    pemain.Gerak((Integer.valueOf(undo[0]) * -jarak), 0);
                     repaint();
                 }
                 break;
@@ -250,45 +251,52 @@ public class Tempat extends JPanel {
                 break;
             }
         }
-
     }
 
     public void redo() {
         for (int i = Allperintah.size() - 1; i >= 0; i--) {
             String input = Allperintah.get(i).toString();
             String[] redo = input.split(" ");
-            if (redo[1].equalsIgnoreCase("r")) {
-                if (cekObjekNabrakTembok(pemain, "l")) {
-                    return;
-                } else {
-                    pemain.Gerak((Integer.valueOf(redo[0]) * jarak), 0);
-                    repaint();
-                }
-                break;
-            } else if (redo[1].equalsIgnoreCase("l")) {
-                if (cekObjekNabrakTembok(pemain, "r")) {
-                    return;
-                } else {
-                    pemain.Gerak((Integer.valueOf(redo[0]) * -jarak), 0);
-                    repaint();
+            if (redo[1].equalsIgnoreCase("u")) {
+                for (int j = 0; j < Integer.parseInt(String.valueOf(redo[0])); j++) {
+                    if (cekObjekNabrakTembok(pemain, "u")) {
+                        return;
+                    } else {
+                        pemain.Gerak(0, -jarak);
+                        repaint();
+                    }
+
                 }
                 break;
             } else if (redo[1].equalsIgnoreCase("d")) {
-                if (cekObjekNabrakTembok(pemain, "u")) {
-                    return;
-                } else {
-                    pemain.Gerak(0, jarak);
-                    repaint();
+                for (int j = 0; j < Integer.parseInt(String.valueOf(redo[0])); j++) {
+                    if (cekObjekNabrakTembok(pemain, "d")) {
+                        return;
+                    } else {
+                        pemain.Gerak(0, jarak);
+                        repaint();
+                    }
                 }
                 break;
-            } else if (redo[1].equalsIgnoreCase("u")) {
-                if (cekObjekNabrakTembok(pemain, "d")) {
-                    return;
-                } else {
-                    pemain.Gerak(0, -jarak);
-                    repaint();
+            } else if (redo[1].equalsIgnoreCase("r")) {
+                for (int j = 0; j < Integer.parseInt(String.valueOf(redo[0])); j++) {
+                    if (cekObjekNabrakTembok(pemain, "r")) {
+                        return;
+                    } else {
+                        pemain.Gerak(jarak, 0);
+                        repaint();
+                    }
                 }
                 break;
+            } else if (redo[1].equalsIgnoreCase("l")) {
+                for (int j = 0; j < Integer.parseInt(String.valueOf(redo[0])); j++) {
+                    if (cekObjekNabrakTembok(pemain, "l")) {
+                        return;
+                    } else {
+                        pemain.Gerak(-jarak, 0);
+                        repaint();
+                    }
+                }
             }
         }
 
@@ -309,12 +317,17 @@ public class Tempat extends JPanel {
         repaint();//gambar ulang
     }
 
-    public String getTeksPerintah() {
-        String bantu = "";
+    public void save() {
         for (int i = 0; i < Allperintah.size(); i++) {
-            bantu = bantu + Allperintah.get(i) + " ";
+            simpanPerintah.add(Allperintah.get(i).toString());
         }
-        return bantu;
+    }
+
+    public void load() {
+        for (int i = 0; i < simpanPerintah.size(); i++) {
+            PerintahGerak(simpanPerintah.get(i).toString());
+        }
+        simpanPerintah.clear();
     }
 
     public Pemain getPemain() {
@@ -325,11 +338,11 @@ public class Tempat extends JPanel {
         this.pemain = pemain;
     }
 
-    public Gawang getGawang() {
+    public Target getGawang() {
         return gawang;
     }
 
-    public void setGawang(Gawang gawang) {
+    public void setGawang(Target gawang) {
         this.gawang = gawang;
     }
 
@@ -348,4 +361,27 @@ public class Tempat extends JPanel {
     public void setTempat(ArrayList tempat) {
         this.tempat = tempat;
     }
+
+    public ArrayList getAllperintah() {
+        return Allperintah;
+    }
+
+    public void setAllperintah(ArrayList Allperintah) {
+        this.Allperintah = Allperintah;
+    }
+
+    public ArrayList getSimpanPerintah() {
+        return simpanPerintah;
+    }
+
+    public void setSimpanPerintah(ArrayList simpanPerintah) {
+        this.simpanPerintah = simpanPerintah;
+    }
+
+//    public String toString(){
+//        String s = "";
+//        for (int i = 0; i < simpanPerintah.size(); i++) {
+//           
+//        }
+//    }
 }

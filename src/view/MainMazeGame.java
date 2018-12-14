@@ -21,6 +21,11 @@ public class MainMazeGame extends javax.swing.JFrame {
     private void initComponents() {
 
         jFileChooser1 = new javax.swing.JFileChooser();
+        choice1 = new java.awt.Choice();
+        jSeparator1 = new javax.swing.JSeparator();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jPopupMenu1 = new javax.swing.JPopupMenu();
         perintah = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         btnRestar = new javax.swing.JButton();
@@ -29,11 +34,22 @@ public class MainMazeGame extends javax.swing.JFrame {
         undoButton = new javax.swing.JButton();
         redoButton = new javax.swing.JButton();
         pintasButton = new javax.swing.JButton();
+        langkahLabel = new javax.swing.JLabel();
+        langkahText = new javax.swing.JLabel();
+        saveButton = new javax.swing.JButton();
+        loadButton = new javax.swing.JButton();
         menuBar = new javax.swing.JMenuBar();
         gameMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        map1MenuItem = new javax.swing.JMenuItem();
+        map2MenuItem = new javax.swing.JMenuItem();
         saveMenuItem = new javax.swing.JMenuItem();
         exitMenuItem = new javax.swing.JMenuItem();
+
+        jMenu1.setText("jMenu1");
+
+        jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,7 +78,7 @@ public class MainMazeGame extends javax.swing.JFrame {
         );
         pixelPanelLayout.setVerticalGroup(
             pixelPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 376, Short.MAX_VALUE)
+            .addGap(0, 361, Short.MAX_VALUE)
         );
 
         okButton.setText("OK");
@@ -93,6 +109,24 @@ public class MainMazeGame extends javax.swing.JFrame {
             }
         });
 
+        langkahLabel.setText("Jumlah Langkah :");
+
+        langkahText.setText("0");
+
+        saveButton.setText("SAVE");
+        saveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveButtonActionPerformed(evt);
+            }
+        });
+
+        loadButton.setText("LOAD");
+        loadButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loadButtonActionPerformed(evt);
+            }
+        });
+
         gameMenu.setText("Game");
         gameMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -107,6 +141,26 @@ public class MainMazeGame extends javax.swing.JFrame {
             }
         });
         gameMenu.add(openMenuItem);
+
+        jMenu3.setText("Map");
+
+        map1MenuItem.setText("Map 1");
+        map1MenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                map1MenuItemActionPerformed(evt);
+            }
+        });
+        jMenu3.add(map1MenuItem);
+
+        map2MenuItem.setText("Map 2");
+        map2MenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                map2MenuItemActionPerformed(evt);
+            }
+        });
+        jMenu3.add(map2MenuItem);
+
+        gameMenu.add(jMenu3);
 
         saveMenuItem.setText("Save");
         saveMenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -134,48 +188,65 @@ public class MainMazeGame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pixelPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pixelPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(5, 5, 5)
-                        .addComponent(perintah, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
+                        .addComponent(perintah, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(okButton)
-                        .addGap(12, 12, 12)
+                        .addGap(6, 6, 6)
                         .addComponent(undoButton)
-                        .addGap(12, 12, 12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(redoButton)
-                        .addGap(7, 7, 7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(pintasButton)
-                        .addGap(7, 7, 7)
-                        .addComponent(btnRestar)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnRestar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(saveButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(loadButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(langkahLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(langkahText, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(27, Short.MAX_VALUE)
-                .addComponent(pixelPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(49, Short.MAX_VALUE)
+                .addComponent(pixelPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(jLabel1))
+                    .addComponent(langkahLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(langkahText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(6, 6, 6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(1, 1, 1)
-                        .addComponent(perintah, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(okButton)
-                    .addComponent(undoButton)
-                    .addComponent(redoButton)
-                    .addComponent(pintasButton)
-                    .addComponent(btnRestar))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(perintah, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(okButton)
+                        .addComponent(undoButton)
+                        .addComponent(redoButton)
+                        .addComponent(pintasButton)
+                        .addComponent(btnRestar)
+                        .addComponent(saveButton)
+                        .addComponent(loadButton)))
                 .addContainerGap())
         );
 
         pixelPanel.getAccessibleContext().setAccessibleName("");
 
-        setSize(new java.awt.Dimension(638, 532));
+        setSize(new java.awt.Dimension(764, 561));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -201,6 +272,7 @@ public class MainMazeGame extends javax.swing.JFrame {
         tempat.PerintahGerak(perintah.getText());
         perintah.setText("");
         tempat.setIsi(tempat.getIsi());
+        langkahText.setText(String.valueOf(tempat.getAllperintah().size()));
         tempat.isCompleted();
     }//GEN-LAST:event_perintahActionPerformed
 
@@ -215,11 +287,13 @@ public class MainMazeGame extends javax.swing.JFrame {
     private void btnRestarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestarActionPerformed
         tempat.restartLevel();
         perintah.setText("");
+        langkahText.setText("0");
     }//GEN-LAST:event_btnRestarActionPerformed
 
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
         tempat.PerintahGerak(perintah.getText());
         perintah.setText("");
+        langkahText.setText(String.valueOf(tempat.getAllperintah().size()));
         tempat.isCompleted();
     }//GEN-LAST:event_okButtonActionPerformed
 
@@ -246,6 +320,43 @@ public class MainMazeGame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_saveMenuItemActionPerformed
 
+    private void map1MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_map1MenuItemActionPerformed
+        pixelPanel.removeAll();
+        tempat = new Tempat(new File("tempat.txt"));
+        pixelPanel.add(tempat);
+        tempat.setSize(tempat.getLebar(), tempat.getTinggi());
+        //setelah diset panel pixel, kita letakkan posisi tempat sekoban
+        int lebar = pixelPanel.getWidth();
+        int tinggi = pixelPanel.getHeight();
+        //mendapatkan titik koordinat x,y
+        int x = (lebar - tempat.getWidth()) / 2;
+        int y = (tinggi - tempat.getHeight()) / 2;
+        tempat.setLocation(x, y);
+    }//GEN-LAST:event_map1MenuItemActionPerformed
+
+    private void map2MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_map2MenuItemActionPerformed
+        pixelPanel.removeAll();
+        tempat = new Tempat(new File("tempat2.txt"));
+        pixelPanel.add(tempat);
+        tempat.setSize(tempat.getLebar(), tempat.getTinggi());
+        //setelah diset panel pixel, kita letakkan posisi tempat sekoban
+        int lebar = pixelPanel.getWidth();
+        int tinggi = pixelPanel.getHeight();
+        //mendapatkan titik koordinat x,y
+        int x = (lebar - tempat.getWidth()) / 2;
+        int y = (tinggi - tempat.getHeight()) / 2;
+        tempat.setLocation(x, y);
+    }//GEN-LAST:event_map2MenuItemActionPerformed
+
+    private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
+        tempat.save();
+        JOptionPane.showMessageDialog(null, "Konfigurasi Tersimpan!");
+    }//GEN-LAST:event_saveButtonActionPerformed
+
+    private void loadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadButtonActionPerformed
+        tempat.load();
+    }//GEN-LAST:event_loadButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -260,10 +371,21 @@ public class MainMazeGame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRestar;
+    private java.awt.Choice choice1;
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu gameMenu;
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel langkahLabel;
+    private javax.swing.JLabel langkahText;
+    private javax.swing.JButton loadButton;
+    private javax.swing.JMenuItem map1MenuItem;
+    private javax.swing.JMenuItem map2MenuItem;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JButton okButton;
     private javax.swing.JMenuItem openMenuItem;
@@ -271,6 +393,7 @@ public class MainMazeGame extends javax.swing.JFrame {
     private javax.swing.JButton pintasButton;
     private javax.swing.JPanel pixelPanel;
     private javax.swing.JButton redoButton;
+    private javax.swing.JButton saveButton;
     private javax.swing.JMenuItem saveMenuItem;
     private javax.swing.JButton undoButton;
     // End of variables declaration//GEN-END:variables

@@ -1,13 +1,13 @@
 package model;
 import java.awt.Image;
 
-public class Pixel {
+public class Sel {
     private int posisiX;
     private int posisiY;
     private Image image; //untuk membuat gambar dalam pixel posisi xy
     private int Jarak = 40; //jika sudah menentukaan  jarak/pixel 20 semua gambar harus di set 20x20 pixel
     
-    public Pixel(int x, int y) {
+    public Sel(int x, int y) {
         this.posisiX = x;
         this.posisiY = y;
     }
@@ -35,7 +35,7 @@ public class Pixel {
     public void setImage(Image image) {
         this.image = image;
     }
-public boolean PosisiKiriObjek(Pixel Objek) {
+public boolean PosisiKiriObjek(Sel Objek) {
         if (((this.getPosisiX() - Jarak) == Objek.getPosisiX()) && (this.getPosisiY() == Objek.getPosisiY())) {
             return true;
         } else {
@@ -43,7 +43,7 @@ public boolean PosisiKiriObjek(Pixel Objek) {
         }
     }
 
-    public boolean PosisiKananObjek(Pixel Objek) {
+    public boolean PosisiKananObjek(Sel Objek) {
         if (((this.getPosisiX() + Jarak) == Objek.getPosisiX()) && (this.getPosisiY() == Objek.getPosisiY())) {
             return true;
         } else {
@@ -51,7 +51,7 @@ public boolean PosisiKiriObjek(Pixel Objek) {
         }
     }
 
-    public boolean PosisiAtasObjek(Pixel Objek) {
+    public boolean PosisiAtasObjek(Sel Objek) {
         if (((this.getPosisiY() - Jarak) == Objek.getPosisiY()) && (this.getPosisiX() == Objek.getPosisiX())) {
             return true;
         } else {
@@ -59,7 +59,7 @@ public boolean PosisiKiriObjek(Pixel Objek) {
         }
     }
 
-    public boolean PosisiBawahObjek(Pixel Objek) {
+    public boolean PosisiBawahObjek(Sel Objek) {
         if (((this.getPosisiY() + Jarak) == Objek.getPosisiY()) && (this.getPosisiX() == Objek.getPosisiX())) {
             return true;
         } else {
