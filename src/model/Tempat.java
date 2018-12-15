@@ -6,8 +6,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,8 +25,6 @@ public class Tempat extends JPanel {
     private File Alamatpeta;
     private ArrayList<String> Allperintah = new ArrayList<String>();
     private ArrayList<String> simpanPerintah = new ArrayList<String>();
-
-    private String isi;
 
     public Tempat(File file) {
         bacaKonfigurasi(file);
@@ -70,7 +66,6 @@ public class Tempat extends JPanel {
                     }
                     tinggi = posisiY;
                 }
-                setIsi(hasilBaca);
             }
         } catch (IOException ex) {
             Logger.getLogger(Tempat.class.getName()).log(Level.SEVERE, null, ex);
@@ -364,22 +359,6 @@ public class Tempat extends JPanel {
 
     public void setAllperintah(ArrayList Allperintah) {
         this.Allperintah = Allperintah;
-    }
-
-    public ArrayList getSimpanPerintah() {
-        return simpanPerintah;
-    }
-
-    public void setSimpanPerintah(ArrayList simpanPerintah) {
-        this.simpanPerintah = simpanPerintah;
-    }
-
-    public String getIsi() {
-        return isi;
-    }
-
-    public void setIsi(String isi) {
-        this.isi = isi;
     }
 
 }

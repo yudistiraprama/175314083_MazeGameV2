@@ -8,6 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 public class MainMazeGame extends javax.swing.JFrame {
 
@@ -354,6 +355,7 @@ public class MainMazeGame extends javax.swing.JFrame {
         tempat.save();
         JOptionPane.showMessageDialog(null, "Konfigurasi Tersimpan!\nSampai Jumpa!");
         pixelPanel.removeAll();
+        pixelPanel.setBackground(null);
     }//GEN-LAST:event_saveButtonActionPerformed
 
     private void loadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadButtonActionPerformed
