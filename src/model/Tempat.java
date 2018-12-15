@@ -21,10 +21,8 @@ public class Tempat extends JPanel {
     private int lebar = 0;
     private int tinggi = 0;
     private int jarak = 40;
-
     private File Alamatpeta;
     private ArrayList<String> Allperintah = new ArrayList<String>();
-    private ArrayList<String> simpanPerintah = new ArrayList<String>();
 
     public Tempat(File file) {
         bacaKonfigurasi(file);
@@ -107,7 +105,6 @@ public class Tempat extends JPanel {
         } catch (IOException ex) {
             Logger.getLogger(Tempat.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     @Override
@@ -219,10 +216,11 @@ public class Tempat extends JPanel {
         return bantu;
     }
 
-    public void isCompleted() {
+    public void Completed() {
         if (pemain.getPosisiX() == target.getPosisiX() && pemain.getPosisiY() == target.getPosisiY()) {
             JOptionPane.showMessageDialog(null, "Selamat anda berhasil menyelesaikan game ini dengan " + this.getAllperintah().size() + " langkah");
             tempat.clear();
+            System.exit(0);
         }
     }
 
@@ -269,12 +267,11 @@ public class Tempat extends JPanel {
         }
     }
 
-    public String[] auto1() {
+    public void auto1() {
         String[] pintas = {"r 3", "d 3", "r 2", "d 1"};
         for (int i = 0; i < pintas.length; i++) {
             PerintahGerak(pintas[i]);
         }
-        return pintas;
     }
 
     public void auto2() {
@@ -291,7 +288,7 @@ public class Tempat extends JPanel {
         }
     }
 
-    public void restartLevel() {
+    public void restart() {
         Allperintah.clear();
         tembok.clear();
         tempat.clear();
@@ -315,7 +312,7 @@ public class Tempat extends JPanel {
             for (int i = 0; i < tempat.Allperintah.size(); i++) {
                 PerintahGerak(tempat.Allperintah.get(i));
             }
-            this.savePermainan(new File ("save.dat"));
+            this.savePermainan(new File("save.dat"));
         } catch (IOException ex) {
             Logger.getLogger(Tempat.class.getName()).log(Level.SEVERE, null, ex);
         }

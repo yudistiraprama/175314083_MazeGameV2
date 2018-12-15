@@ -260,10 +260,8 @@ public class MainMazeGame extends javax.swing.JFrame {
             tempat = new Tempat(file);
             pixelPanel.add(tempat);
             tempat.setSize(tempat.getLebar(), tempat.getTinggi());
-            //setelah diset panel pixel, kita letakkan posisi tempat sekoban
             int lebar = pixelPanel.getWidth();
             int tinggi = pixelPanel.getHeight();
-            //mendapatkan titik koordinat x,y
             int x = (lebar - tempat.getWidth()) / 2;
             int y = (tinggi - tempat.getHeight()) / 2;
             tempat.setLocation(x, y);
@@ -274,7 +272,7 @@ public class MainMazeGame extends javax.swing.JFrame {
         tempat.PerintahGerak(perintah.getText());
         perintah.setText("");
         langkahText.setText(String.valueOf(tempat.getAllperintah().size()));
-        tempat.isCompleted();
+        tempat.Completed();
     }//GEN-LAST:event_perintahActionPerformed
 
     private void exitMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitMenuItemActionPerformed
@@ -286,7 +284,7 @@ public class MainMazeGame extends javax.swing.JFrame {
     }//GEN-LAST:event_gameMenuActionPerformed
 
     private void btnRestarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRestarActionPerformed
-        tempat.restartLevel();
+        tempat.restart();
         perintah.setText("");
         langkahText.setText("0");
     }//GEN-LAST:event_btnRestarActionPerformed
@@ -295,7 +293,7 @@ public class MainMazeGame extends javax.swing.JFrame {
         tempat.PerintahGerak(perintah.getText());
         perintah.setText("");
         langkahText.setText(String.valueOf(tempat.getAllperintah().size()));
-        tempat.isCompleted();
+        tempat.Completed();
     }//GEN-LAST:event_okButtonActionPerformed
 
     private void undoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_undoButtonActionPerformed
@@ -304,21 +302,20 @@ public class MainMazeGame extends javax.swing.JFrame {
 
     private void autoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_autoButtonActionPerformed
         if (map1MenuItem.isSelected() == false) {
-            tempat.restartLevel();
+            tempat.restart();
             tempat.auto1();
-            tempat.isCompleted();
             map1MenuItem.setSelected(true);
         } else if (map2MenuItem.isSelected() == false) {
-            tempat.restartLevel();
+            tempat.restart();
             tempat.auto2();
-            tempat.isCompleted();
             map2MenuItem.setSelected(true);
         } else if (map3MenuItem.isSelected() == false) {
-            tempat.restartLevel();
+            tempat.restart();
             tempat.auto3();
-            tempat.isCompleted();
             map3MenuItem.setSelected(true);
         }
+        tempat.Completed();
+        tempat.restart();
     }//GEN-LAST:event_autoButtonActionPerformed
 
     private void map1MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_map1MenuItemActionPerformed
@@ -326,10 +323,8 @@ public class MainMazeGame extends javax.swing.JFrame {
         tempat = new Tempat(new File("map1.txt"));
         pixelPanel.add(tempat);
         tempat.setSize(tempat.getLebar(), tempat.getTinggi());
-        //setelah diset panel pixel, kita letakkan posisi tempat sekoban
         int lebar = pixelPanel.getWidth();
         int tinggi = pixelPanel.getHeight();
-        //mendapatkan titik koordinat x,y
         int x = (lebar - tempat.getWidth()) / 2;
         int y = (tinggi - tempat.getHeight()) / 2;
         tempat.setLocation(x, y);
@@ -341,10 +336,8 @@ public class MainMazeGame extends javax.swing.JFrame {
         tempat = new Tempat(new File("map2.txt"));
         pixelPanel.add(tempat);
         tempat.setSize(tempat.getLebar(), tempat.getTinggi());
-        //setelah diset panel pixel, kita letakkan posisi tempat sekoban
         int lebar = pixelPanel.getWidth();
         int tinggi = pixelPanel.getHeight();
-        //mendapatkan titik koordinat x,y
         int x = (lebar - tempat.getWidth()) / 2;
         int y = (tinggi - tempat.getHeight()) / 2;
         tempat.setLocation(x, y);
@@ -367,10 +360,8 @@ public class MainMazeGame extends javax.swing.JFrame {
         tempat = new Tempat(new File("map3.txt"));
         pixelPanel.add(tempat);
         tempat.setSize(tempat.getLebar(), tempat.getTinggi());
-        //setelah diset panel pixel, kita letakkan posisi tempat sekoban
         int lebar = pixelPanel.getWidth();
         int tinggi = pixelPanel.getHeight();
-        //mendapatkan titik koordinat x,y
         int x = (lebar - tempat.getWidth()) / 2;
         int y = (tinggi - tempat.getHeight()) / 2;
         tempat.setLocation(x, y);
