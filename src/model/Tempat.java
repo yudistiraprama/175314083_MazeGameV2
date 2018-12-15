@@ -313,6 +313,7 @@ public class Tempat extends JPanel {
     }
 
     public void load() {
+        this.Allperintah.clear();
         try {
             Tempat tempat = new Tempat(Alamatpeta);
             tempat.loadPermainan(new File("save.dat"));
