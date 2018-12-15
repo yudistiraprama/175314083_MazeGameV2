@@ -303,14 +303,17 @@ public class MainMazeGame extends javax.swing.JFrame {
 
     private void autoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_autoButtonActionPerformed
         if (map1MenuItem.isSelected() == false) {
+            tempat.restartLevel();
             tempat.auto1();
             tempat.isCompleted();
             map1MenuItem.setSelected(true);
         } else if (map2MenuItem.isSelected() == false) {
+            tempat.restartLevel();
             tempat.auto2();
             tempat.isCompleted();
             map2MenuItem.setSelected(true);
         } else if (map3MenuItem.isSelected() == false) {
+            tempat.restartLevel();
             tempat.auto3();
             tempat.isCompleted();
             map3MenuItem.setSelected(true);
