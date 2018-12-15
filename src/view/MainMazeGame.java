@@ -4,6 +4,8 @@ import model.Tempat;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -347,7 +349,8 @@ public class MainMazeGame extends javax.swing.JFrame {
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         tempat.save();
-        JOptionPane.showMessageDialog(null, "Konfigurasi Tersimpan!");
+        JOptionPane.showMessageDialog(null, "Konfigurasi Tersimpan!\nSampai Jumpa!");
+        pixelPanel.removeAll();
     }//GEN-LAST:event_saveButtonActionPerformed
 
     private void loadButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadButtonActionPerformed

@@ -3,7 +3,11 @@ package model;
 import java.awt.Graphics;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,9 +25,8 @@ public class Tempat extends JPanel {
     private int jarak = 40;
 
     private File Alamatpeta;
-    private ArrayList Allperintah = new ArrayList();
+    private ArrayList<String> Allperintah = new ArrayList<String>();
     private ArrayList<String> simpanPerintah = new ArrayList<String>();
-    private ArrayList<String> undo = new ArrayList<String>();
 
     private String isi;
 
@@ -74,6 +77,44 @@ public class Tempat extends JPanel {
         }
     }
 
+    public void savePermainan(File file) throws IOException {
+        try {
+            FileOutputStream fos = new FileOutputStream(file);
+            for (int i = 0; i < this.Allperintah.size(); i++) {
+                String data = this.Allperintah.get(i) + ",";
+                fos.write(data.getBytes());
+            }
+            fos.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Tempat.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Tempat.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void loadPermainan(File file) throws IOException {
+        FileInputStream fis = null;
+        try {
+            String hasilBaca = "";
+            fis = new FileInputStream(file);
+            int dataInt;
+
+            while ((dataInt = fis.read()) != -1) {
+                if ((char) dataInt == ',') {
+                    this.Allperintah.add(hasilBaca);
+                    hasilBaca = "";
+                } else {
+                    hasilBaca = hasilBaca + (char) dataInt;
+                }
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Tempat.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Tempat.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -96,7 +137,6 @@ public class Tempat extends JPanel {
         } else if (in.length == 2) {
             if (in[0].matches("[udrl]")) {
                 Allperintah.add(input);
-                undo.add(input);
                 if (in[0].equalsIgnoreCase("u")) {
                     for (int i = 0; i < Integer.parseInt(String.valueOf(in[1])); i++) {
                         if (cekObjekTabrakTembok(pemain, "u")) {
@@ -192,11 +232,11 @@ public class Tempat extends JPanel {
     }
 
     public void undo() {
-        int i = undo.size() - 1;
+        int i = Allperintah.size() - 1;
         if (i == -1) {
             JOptionPane.showMessageDialog(null, "Sudah di tempat semula");
         } else {
-            String input = undo.get(i);
+            String input = Allperintah.get(i);
             String[] un = input.split(" ");
             if (un[0].equalsIgnoreCase("d")) {
                 for (int j = 0; j < Integer.parseInt(String.valueOf(un[1])); j++) {
@@ -205,7 +245,7 @@ public class Tempat extends JPanel {
                         repaint();
                     }
                 }
-                undo.remove(i);
+                Allperintah.remove(i);
             } else if (un[0].equalsIgnoreCase("u")) {
                 for (int j = 0; j < Integer.parseInt(String.valueOf(un[1])); j++) {
                     if (!cekObjekTabrakTembok(pemain, "d")) {
@@ -213,7 +253,7 @@ public class Tempat extends JPanel {
                         repaint();
                     }
                 }
-                undo.remove(i);
+                Allperintah.remove(i);
             } else if (un[0].equalsIgnoreCase("l")) {
                 for (int j = 0; j < Integer.parseInt(String.valueOf(un[1])); j++) {
                     if (!cekObjekTabrakTembok(pemain, "r")) {
@@ -221,7 +261,7 @@ public class Tempat extends JPanel {
                         repaint();
                     }
                 }
-                undo.remove(i);
+                Allperintah.remove(i);
             } else if (un[0].equalsIgnoreCase("r")) {
                 for (int j = 0; j < Integer.parseInt(String.valueOf(un[1])); j++) {
                     if (!cekObjekTabrakTembok(pemain, "l")) {
@@ -229,7 +269,7 @@ public class Tempat extends JPanel {
                         repaint();
                     }
                 }
-                undo.remove(i);
+                Allperintah.remove(i);
             }
         }
     }
@@ -265,16 +305,24 @@ public class Tempat extends JPanel {
     }
 
     public void save() {
-        for (int i = 0; i < Allperintah.size(); i++) {
-            simpanPerintah.add(Allperintah.get(i).toString());
+        try {
+            this.savePermainan(new File("save.dat"));
+        } catch (IOException ex) {
+            Logger.getLogger(Tempat.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     public void load() {
-        for (int i = 0; i < simpanPerintah.size(); i++) {
-            PerintahGerak(simpanPerintah.get(i).toString());
+        try {
+            Tempat tempat = new Tempat(Alamatpeta);
+            tempat.loadPermainan(new File("save.dat"));
+            for (int i = 0; i < tempat.Allperintah.size(); i++) {
+                PerintahGerak(tempat.Allperintah.get(i));
+            }
+            this.savePermainan(new File ("save.dat"));
+        } catch (IOException ex) {
+            Logger.getLogger(Tempat.class.getName()).log(Level.SEVERE, null, ex);
         }
-        simpanPerintah.clear();
     }
 
     public int getLebar() {
