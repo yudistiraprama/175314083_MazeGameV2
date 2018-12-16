@@ -266,26 +266,26 @@ public class Tempat extends JPanel {
         }
     }
 
-    public void auto1() {
-        String[] pintas = {"r 3", "d 3", "r 2", "d 1"};
-        for (int i = 0; i < pintas.length; i++) {
-            PerintahGerak(pintas[i]);
-        }
-    }
-
-    public void auto2() {
-        String[] pintas = {"r 2", "u 4", "r 3"};
-        for (int i = 0; i < pintas.length; i++) {
-            PerintahGerak(pintas[i]);
-        }
-    }
-
-    public void auto3() {
-        String[] pintas = {"d 1", "l 2", "d 3", "l 3"};
-        for (int i = 0; i < pintas.length; i++) {
-            PerintahGerak(pintas[i]);
-        }
-    }
+//    public void auto1() {
+//        String[] pintas = {"r 3", "d 3", "r 2", "d 1"};
+//        for (int i = 0; i < pintas.length; i++) {
+//            PerintahGerak(pintas[i]);
+//        }
+//    }
+//
+//    public void auto2() {
+//        String[] pintas = {"r 2", "u 4", "r 3"};
+//        for (int i = 0; i < pintas.length; i++) {
+//            PerintahGerak(pintas[i]);
+//        }
+//    }
+//
+//    public void auto3() {
+//        String[] pintas = {"d 1", "l 2", "d 3", "l 3"};
+//        for (int i = 0; i < pintas.length; i++) {
+//            PerintahGerak(pintas[i]);
+//        }
+//    }
 
     public void restart() {
         Allperintah.clear();

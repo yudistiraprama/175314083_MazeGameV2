@@ -258,6 +258,7 @@ public class MainMazeGame extends javax.swing.JFrame {
         int returnVal = jFileChooser1.showOpenDialog(this);
         if (returnVal == jFileChooser1.APPROVE_OPTION) {
             file = jFileChooser1.getSelectedFile();
+            tempatPanel.removeAll();
             tempat = new Tempat(file);
             tempatPanel.add(tempat);
             tempat.setSize(tempat.getLebar(), tempat.getTinggi());
@@ -302,34 +303,43 @@ public class MainMazeGame extends javax.swing.JFrame {
     }//GEN-LAST:event_undoButtonActionPerformed
 
     private void autoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_autoButtonActionPerformed
-        if (map1MenuItem.isSelected() == true) {
-            tempat.restart();
-            tempat.auto1();
-            map1MenuItem.setSelected(true);
-        } else if (map2MenuItem.isSelected() == true) {
-            tempat.restart();
-            tempat.auto2();
-            map2MenuItem.setSelected(true);
-        } else if (map3MenuItem.isSelected() == true) {
-            tempat.restart();
-            tempat.auto3();
-            map3MenuItem.setSelected(true);
-        } else{
-            tempat.restart();
-            int a = tempat.getLebar() - 40;
-            int b = tempat.getTinggi() - 40;
-            tempat.getPemain().Gerak(a, b);
-            tempat.repaint();
-            tempat.Completed();
-        }
+//        if (map1MenuItem.isSelected() == true) {
+//            tempat.restart();
+//            tempat.auto1();
+//            map1MenuItem.setSelected(true);
+//        } else if (map2MenuItem.isSelected() == true) {
+//            tempat.restart();
+//            tempat.auto2();
+//            map2MenuItem.setSelected(true);
+//        } else if (map3MenuItem.isSelected() == true) {
+//            tempat.restart();
+//            tempat.auto3();
+//            map3MenuItem.setSelected(true);
+//        } else{
+//            tempat.restart();
+//            int a = tempat.getLebar() - 40;
+//            int b = tempat.getTinggi() - 40;
+//            tempat.getPemain().Gerak(a, b);
+//            tempat.repaint();
+//            tempat.Completed();
+//        }
+//        JOptionPane.showMessageDialog(null, "Selamat anda berhasil menyelesaikan game ini dengan perintah AUTO");
+//        tempat.getAllperintah().clear();
+        tempat.restart();
+        int a = tempat.getTarget().getPosisiX() - tempat.getPemain().getPosisiX();
+        int b = tempat.getTarget().getPosisiY() - tempat.getPemain().getPosisiY();
+        tempat.getPemain().Gerak(a, b);
+        tempat.repaint();
         JOptionPane.showMessageDialog(null, "Selamat anda berhasil menyelesaikan game ini dengan perintah AUTO");
-        tempat.getAllperintah().clear();
+        tempat.restart();
+        langkahText.setText("0");
+        tempat.Completed();
     }//GEN-LAST:event_autoButtonActionPerformed
 
     private void map1MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_map1MenuItemActionPerformed
-        map1MenuItem.setSelected(true);
-        map2MenuItem.setSelected(false);
-        map3MenuItem.setSelected(false);
+//        map1MenuItem.setSelected(true);
+//        map2MenuItem.setSelected(false);
+//        map3MenuItem.setSelected(false);
         tempatPanel.removeAll();
         tempat = new Tempat(new File("map1.txt"));
         tempatPanel.add(tempat);
@@ -344,9 +354,9 @@ public class MainMazeGame extends javax.swing.JFrame {
     }//GEN-LAST:event_map1MenuItemActionPerformed
 
     private void map2MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_map2MenuItemActionPerformed
-        map1MenuItem.setSelected(false);
-        map2MenuItem.setSelected(true);
-        map3MenuItem.setSelected(false);
+//        map1MenuItem.setSelected(false);
+//        map2MenuItem.setSelected(true);
+//        map3MenuItem.setSelected(false);
         tempatPanel.removeAll();
         tempat = new Tempat(new File("map2.txt"));
         tempatPanel.add(tempat);
@@ -372,10 +382,10 @@ public class MainMazeGame extends javax.swing.JFrame {
     }//GEN-LAST:event_loadButtonActionPerformed
 
     private void map3MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_map3MenuItemActionPerformed
-        map1MenuItem.setSelected(false);
-        map2MenuItem.setSelected(false);
-        map3MenuItem.setSelected(true);
-        map3MenuItem.setSelected(true);
+//        map1MenuItem.setSelected(false);
+//        map2MenuItem.setSelected(false);
+//        map3MenuItem.setSelected(true);
+//        map3MenuItem.setSelected(true);
         tempatPanel.removeAll();
         tempat = new Tempat(new File("map3.txt"));
         tempatPanel.add(tempat);
