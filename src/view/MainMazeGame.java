@@ -313,6 +313,13 @@ public class MainMazeGame extends javax.swing.JFrame {
             tempat.restart();
             tempat.auto3();
             map3MenuItem.setSelected(true);
+        } else{
+            tempat.restart();
+            int a = tempat.getLebar() - 20;
+            int b = tempat.getTinggi() - 20;
+            tempat.getPemain().Gerak(a, b);
+            tempat.repaint();
+            tempat.Completed();
         }
         JOptionPane.showMessageDialog(null, "Selamat anda berhasil menyelesaikan game ini dengan perintah AUTO");
         tempat.getAllperintah().clear();
