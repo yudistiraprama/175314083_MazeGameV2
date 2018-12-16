@@ -315,8 +315,8 @@ public class MainMazeGame extends javax.swing.JFrame {
             map3MenuItem.setSelected(true);
         } else{
             tempat.restart();
-            int a = tempat.getLebar() - 20;
-            int b = tempat.getTinggi() - 20;
+            int a = tempat.getLebar() - 40;
+            int b = tempat.getTinggi() - 40;
             tempat.getPemain().Gerak(a, b);
             tempat.repaint();
             tempat.Completed();
