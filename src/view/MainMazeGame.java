@@ -59,8 +59,10 @@ public class MainMazeGame extends javax.swing.JFrame {
             }
         });
 
+        perintahLabel.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
         perintahLabel.setText("PERINTAH");
 
+        restartButton.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
         restartButton.setText("RESTART");
         restartButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -68,6 +70,7 @@ public class MainMazeGame extends javax.swing.JFrame {
             }
         });
 
+        tempatPanel.setBorder(null);
         tempatPanel.setForeground(new java.awt.Color(240, 240, 240));
 
         javax.swing.GroupLayout tempatPanelLayout = new javax.swing.GroupLayout(tempatPanel);
@@ -81,6 +84,7 @@ public class MainMazeGame extends javax.swing.JFrame {
             .addGap(0, 361, Short.MAX_VALUE)
         );
 
+        okButton.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
         okButton.setText("OK");
         okButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,6 +92,7 @@ public class MainMazeGame extends javax.swing.JFrame {
             }
         });
 
+        undoButton.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
         undoButton.setText("UNDO");
         undoButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,6 +100,7 @@ public class MainMazeGame extends javax.swing.JFrame {
             }
         });
 
+        autoButton.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
         autoButton.setText("AUTO");
         autoButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -106,6 +112,7 @@ public class MainMazeGame extends javax.swing.JFrame {
 
         langkahText.setText("0");
 
+        saveButton.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
         saveButton.setText("SAVE");
         saveButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -113,6 +120,7 @@ public class MainMazeGame extends javax.swing.JFrame {
             }
         });
 
+        loadButton.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
         loadButton.setText("LOAD");
         loadButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -193,19 +201,19 @@ public class MainMazeGame extends javax.swing.JFrame {
                 .addComponent(tempatPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(8, 8, 8)
                 .addComponent(perintahLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(perintah, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(perintah, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(okButton)
-                        .addGap(6, 6, 6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(undoButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(autoButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(12, 12, 12)
                         .addComponent(restartButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(saveButton)
@@ -215,12 +223,12 @@ public class MainMazeGame extends javax.swing.JFrame {
                         .addComponent(langkahLabel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(langkahText, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(49, Short.MAX_VALUE)
+                .addContainerGap(55, Short.MAX_VALUE)
                 .addComponent(tempatPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -245,7 +253,7 @@ public class MainMazeGame extends javax.swing.JFrame {
 
         tempatPanel.getAccessibleContext().setAccessibleName("");
 
-        setSize(new java.awt.Dimension(703, 561));
+        setSize(new java.awt.Dimension(731, 561));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
