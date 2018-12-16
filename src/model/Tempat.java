@@ -25,7 +25,7 @@ public class Tempat extends JPanel {
     private ArrayList<String> Allperintah = new ArrayList<String>();
 
     public Tempat(File file) {
-        bacaKonfigurasi(file);
+        bacaKonfigurasi(file); 
     }
 
     public void bacaKonfigurasi(File file) {
@@ -339,14 +339,6 @@ public class Tempat extends JPanel {
 
     public void setPemain(Pemain pemain) {
         this.pemain = pemain;
-    }
-
-    public Target getGawang() {
-        return target;
-    }
-
-    public void setGawang(Target gawang) {
-        this.target = gawang;
     }
 
     public ArrayList getTempat() {
