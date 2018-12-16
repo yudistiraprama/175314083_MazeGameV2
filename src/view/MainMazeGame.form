@@ -4,10 +4,6 @@
   <NonVisualComponents>
     <Component class="javax.swing.JFileChooser" name="jFileChooser1">
     </Component>
-    <Component class="java.awt.Choice" name="choice1">
-    </Component>
-    <Component class="javax.swing.JSeparator" name="jSeparator1">
-    </Component>
     <Container class="javax.swing.JMenu" name="jMenu1">
       <Properties>
         <Property name="text" type="java.lang.String" value="jMenu1"/>
@@ -22,12 +18,6 @@
         <Property name="text" type="java.lang.String" value="jMenuItem1"/>
       </Properties>
     </Component>
-    <Container class="javax.swing.JPopupMenu" name="jPopupMenu1">
-
-      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
-        <Property name="useNullLayout" type="boolean" value="true"/>
-      </Layout>
-    </Container>
     <Menu class="javax.swing.JMenuBar" name="menuBar">
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="gameMenu">
@@ -128,12 +118,12 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
-              <Component id="pixelPanel" min="-2" max="-2" attributes="0"/>
+              <Component id="tempatPanel" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jLabel1" min="-2" pref="73" max="-2" attributes="0"/>
+              <Component id="perintahLabel" min="-2" pref="73" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
@@ -145,7 +135,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="autoButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnRestar" min="-2" max="-2" attributes="0"/>
+                      <Component id="restartButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="saveButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -165,7 +155,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace pref="49" max="32767" attributes="0"/>
-              <Component id="pixelPanel" min="-2" max="-2" attributes="0"/>
+              <Component id="tempatPanel" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="langkahLabel" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -176,7 +166,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="perintahLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="perintah" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -184,7 +174,7 @@
                       <Component id="okButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="undoButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="autoButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnRestar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="restartButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="saveButton" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="loadButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -200,20 +190,20 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="perintahActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel1">
+    <Component class="javax.swing.JLabel" name="perintahLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="PERINTAH"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btnRestar">
+    <Component class="javax.swing.JButton" name="restartButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="RESTART"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRestarActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="restartButtonActionPerformed"/>
       </Events>
     </Component>
-    <Container class="javax.swing.JPanel" name="pixelPanel">
+    <Container class="javax.swing.JPanel" name="tempatPanel">
       <Properties>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="f0" green="f0" red="f0" type="rgb"/>
