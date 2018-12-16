@@ -220,7 +220,6 @@ public class Tempat extends JPanel {
         if (pemain.getPosisiX() == target.getPosisiX() && pemain.getPosisiY() == target.getPosisiY()) {
             JOptionPane.showMessageDialog(null, "Selamat anda berhasil menyelesaikan game ini dengan " + this.getAllperintah().size() + " langkah");
             tempat.clear();
-            System.exit(0);
         }
     }
 
@@ -324,6 +323,14 @@ public class Tempat extends JPanel {
 
     public int getTinggi() {
         return this.tinggi;
+    }
+
+    public Target getTarget() {
+        return target;
+    }
+
+    public void setTarget(Target target) {
+        this.target = target;
     }
 
     public Pemain getPemain() {

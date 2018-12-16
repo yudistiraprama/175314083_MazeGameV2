@@ -301,24 +301,27 @@ public class MainMazeGame extends javax.swing.JFrame {
     }//GEN-LAST:event_undoButtonActionPerformed
 
     private void autoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_autoButtonActionPerformed
-        if (map1MenuItem.isSelected() == false) {
+        if (map1MenuItem.isSelected() == true) {
             tempat.restart();
             tempat.auto1();
             map1MenuItem.setSelected(true);
-        } else if (map2MenuItem.isSelected() == false) {
+        } else if (map2MenuItem.isSelected() == true) {
             tempat.restart();
             tempat.auto2();
             map2MenuItem.setSelected(true);
-        } else if (map3MenuItem.isSelected() == false) {
+        } else if (map3MenuItem.isSelected() == true) {
             tempat.restart();
             tempat.auto3();
             map3MenuItem.setSelected(true);
         }
-        tempat.Completed();
-        tempat.restart();
+        JOptionPane.showMessageDialog(null, "Selamat anda berhasil menyelesaikan game ini dengan perintah AUTO");
+        tempat.getAllperintah().clear();
     }//GEN-LAST:event_autoButtonActionPerformed
 
     private void map1MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_map1MenuItemActionPerformed
+        map1MenuItem.setSelected(true);
+        map2MenuItem.setSelected(false);
+        map3MenuItem.setSelected(false);
         pixelPanel.removeAll();
         tempat = new Tempat(new File("map1.txt"));
         pixelPanel.add(tempat);
@@ -329,9 +332,13 @@ public class MainMazeGame extends javax.swing.JFrame {
         int y = (tinggi - tempat.getHeight()) / 2;
         tempat.setLocation(x, y);
         langkahText.setText("0");
+        JOptionPane.showMessageDialog(null, "              WELCOME!\n           === MAP 1 ===");
     }//GEN-LAST:event_map1MenuItemActionPerformed
 
     private void map2MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_map2MenuItemActionPerformed
+        map1MenuItem.setSelected(false);
+        map2MenuItem.setSelected(true);
+        map3MenuItem.setSelected(false);
         pixelPanel.removeAll();
         tempat = new Tempat(new File("map2.txt"));
         pixelPanel.add(tempat);
@@ -342,11 +349,12 @@ public class MainMazeGame extends javax.swing.JFrame {
         int y = (tinggi - tempat.getHeight()) / 2;
         tempat.setLocation(x, y);
         langkahText.setText("0");
+        JOptionPane.showMessageDialog(null, "              WELCOME!\n           === MAP 2 ===");
     }//GEN-LAST:event_map2MenuItemActionPerformed
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
         tempat.save();
-        JOptionPane.showMessageDialog(null, "Konfigurasi Tersimpan!\nSampai Jumpa!");
+        JOptionPane.showMessageDialog(null, "Konfigurasi Tersimpan!\nSAMPAI JUMPA !");
         pixelPanel.removeAll();
         pixelPanel.setBackground(null);
     }//GEN-LAST:event_saveButtonActionPerformed
@@ -356,6 +364,10 @@ public class MainMazeGame extends javax.swing.JFrame {
     }//GEN-LAST:event_loadButtonActionPerformed
 
     private void map3MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_map3MenuItemActionPerformed
+        map1MenuItem.setSelected(false);
+        map2MenuItem.setSelected(false);
+        map3MenuItem.setSelected(true);
+        map3MenuItem.setSelected(true);
         pixelPanel.removeAll();
         tempat = new Tempat(new File("map3.txt"));
         pixelPanel.add(tempat);
@@ -366,6 +378,7 @@ public class MainMazeGame extends javax.swing.JFrame {
         int y = (tinggi - tempat.getHeight()) / 2;
         tempat.setLocation(x, y);
         langkahText.setText("0");
+        JOptionPane.showMessageDialog(null, "              WELCOME!\n           === MAP 3 ===");
     }//GEN-LAST:event_map3MenuItemActionPerformed
 
     private void caraMainMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_caraMainMenuItemActionPerformed
