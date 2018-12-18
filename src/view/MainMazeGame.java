@@ -34,7 +34,7 @@ public class MainMazeGame extends javax.swing.JFrame {
         saveButton = new javax.swing.JButton();
         loadButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        caraBermainTextArea = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         gameMenu = new javax.swing.JMenu();
@@ -43,7 +43,6 @@ public class MainMazeGame extends javax.swing.JFrame {
         map1MenuItem = new javax.swing.JMenuItem();
         map2MenuItem = new javax.swing.JMenuItem();
         map3MenuItem = new javax.swing.JMenuItem();
-        caraMainMenuItem = new javax.swing.JMenuItem();
         exitMenuItem = new javax.swing.JMenuItem();
 
         jMenu1.setText("jMenu1");
@@ -126,10 +125,13 @@ public class MainMazeGame extends javax.swing.JFrame {
             }
         });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setText("  === WELCOME TO MAZE GAME! ===\n\n Map dapan dipilih secara manual\n dengan menu OPEN atau Map dapat\n dipilih pada menu MAP\n\n Cara menggerakkan pemain :\n\n\t       N(spasi)X\n\n N = Arah Gerakan\n X = Jumlah Langkah\n\n Arah Gerakan :\n U = Up/naik\n D = Down/turun\n L = Left/kiri\n R = Roght/Kanan\n\n OK/Enter = Menjalankan pemain\n UNDO\t = balik ke tempat \n\t   sebelumnya\n AUTO\t = Menuju targe dengan\n\t   otomatis\n SAVE\t = Menyimpan posisi \n\t   terakhir pemain\n LOAD\t = Mengload posisi pemain \n\t   yang di save\n\n *SAVE dan LOAD hanya berlaku \n  untuk map yang sama\n\n\t=== SELAMAT BERMAIN ===");
-        jScrollPane1.setViewportView(jTextArea1);
+        caraBermainTextArea.setEditable(false);
+        caraBermainTextArea.setColumns(20);
+        caraBermainTextArea.setRows(5);
+        caraBermainTextArea.setText("  === WELCOME TO MAZE GAME! ===\n\n Map dapan dipilih secara manual\n dengan menu OPEN atau Map dapat\n dipilih pada menu MAP\n\n Cara menggerakkan pemain :\n\n\t       N(spasi)X\n\n N = Arah Gerakan\n X = Jumlah Langkah\n\n Arah Gerakan :\n U = Up/naik\n D = Down/turun\n L = Left/kiri\n R = Roght/Kanan\n\n OK/Enter = Menjalankan pemain\n UNDO\t = balik ke tempat \n\t   sebelumnya\n AUTO\t = Menuju targe dengan\n\t   otomatis\n SAVE\t = Menyimpan posisi \n\t   terakhir pemain\n LOAD\t = Mengload posisi pemain \n\t   yang di save\n\n *SAVE dan LOAD hanya berlaku \n  untuk map yang sama\n\n\t=== SELAMAT BERMAIN ===");
+        caraBermainTextArea.setToolTipText("");
+        caraBermainTextArea.setFocusCycleRoot(true);
+        jScrollPane1.setViewportView(caraBermainTextArea);
 
         jLabel1.setText("By : Prama & Bayu");
 
@@ -177,14 +179,6 @@ public class MainMazeGame extends javax.swing.JFrame {
 
         gameMenu.add(mapMenu);
 
-        caraMainMenuItem.setText("Cara Bermain");
-        caraMainMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                caraMainMenuItemActionPerformed(evt);
-            }
-        });
-        gameMenu.add(caraMainMenuItem);
-
         exitMenuItem.setText("Exit");
         exitMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -229,14 +223,14 @@ public class MainMazeGame extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(37, 37, 37)
                         .addComponent(tempatPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(35, 35, 35))))
+                        .addGap(35, 35, 35))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -325,28 +319,6 @@ public class MainMazeGame extends javax.swing.JFrame {
     }//GEN-LAST:event_undoButtonActionPerformed
 
     private void autoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_autoButtonActionPerformed
-//        if (map1MenuItem.isSelected() == true) {
-//            tempat.restart();
-//            tempat.auto1();
-//            map1MenuItem.setSelected(true);
-//        } else if (map2MenuItem.isSelected() == true) {
-//            tempat.restart();
-//            tempat.auto2();
-//            map2MenuItem.setSelected(true);
-//        } else if (map3MenuItem.isSelected() == true) {
-//            tempat.restart();
-//            tempat.auto3();
-//            map3MenuItem.setSelected(true);
-//        } else{
-//            tempat.restart();
-//            int a = tempat.getLebar() - 40;
-//            int b = tempat.getTinggi() - 40;
-//            tempat.getPemain().Gerak(a, b);
-//            tempat.repaint();
-//            tempat.Completed();
-//        }
-//        JOptionPane.showMessageDialog(null, "Selamat anda berhasil menyelesaikan game ini dengan perintah AUTO");
-//        tempat.getAllperintah().clear();
         tempat.restart();
         int a = tempat.getTarget().getPosisiX() - tempat.getPemain().getPosisiX();
         int b = tempat.getTarget().getPosisiY() - tempat.getPemain().getPosisiY();
@@ -359,9 +331,6 @@ public class MainMazeGame extends javax.swing.JFrame {
     }//GEN-LAST:event_autoButtonActionPerformed
 
     private void map1MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_map1MenuItemActionPerformed
-//        map1MenuItem.setSelected(true);
-//        map2MenuItem.setSelected(false);
-//        map3MenuItem.setSelected(false);
         tempatPanel.removeAll();
         tempat = new Tempat(new File("map1.txt"));
         tempatPanel.add(tempat);
@@ -376,9 +345,6 @@ public class MainMazeGame extends javax.swing.JFrame {
     }//GEN-LAST:event_map1MenuItemActionPerformed
 
     private void map2MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_map2MenuItemActionPerformed
-//        map1MenuItem.setSelected(false);
-//        map2MenuItem.setSelected(true);
-//        map3MenuItem.setSelected(false);
         tempatPanel.removeAll();
         tempat = new Tempat(new File("map2.txt"));
         tempatPanel.add(tempat);
@@ -404,10 +370,6 @@ public class MainMazeGame extends javax.swing.JFrame {
     }//GEN-LAST:event_loadButtonActionPerformed
 
     private void map3MenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_map3MenuItemActionPerformed
-//        map1MenuItem.setSelected(false);
-//        map2MenuItem.setSelected(false);
-//        map3MenuItem.setSelected(true);
-//        map3MenuItem.setSelected(true);
         tempatPanel.removeAll();
         tempat = new Tempat(new File("map3.txt"));
         tempatPanel.add(tempat);
@@ -420,34 +382,6 @@ public class MainMazeGame extends javax.swing.JFrame {
         langkahText.setText("0");
         JOptionPane.showMessageDialog(null, "              WELCOME!\n           === MAP 3 ===");
     }//GEN-LAST:event_map3MenuItemActionPerformed
-
-    private void caraMainMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_caraMainMenuItemActionPerformed
-        JOptionPane.showMessageDialog(null, "SELAMAT DATANG DI PERMAINAN MAZE GAME !\n"
-                + "\n"
-                + "Gunakan perintah pada keyboard untuk \n"
-                + "menggerakkan pemain menuju tujuannya\n"
-                + "\n"
-                + "Format perintah :\n"
-                + "X(spasi)N\n"
-                + "\n"
-                + "X = arah gerakan\n"
-                + "N = jumlah langkah\n"
-                + "\n"
-                + "Arah Gerakan :\n"
-                + "U = up/naik\n"
-                + "D = down/turun\n"
-                + "R = right/kanan\n"
-                + "L = left/kiri\n"
-                + "\n"
-                + "Kalian dapat memilih map permainan \n"
-                + "pada menu map yang tersedia.\n"
-                + "\n"
-                + "anda dapat mereset, mengsave dan \n"
-                + "mengload permainan untuk satu map yang\n"
-                + "sama.\n"
-                + "\n"
-                + "      ===== SELAMAT BERMAIN ===== ");
-    }//GEN-LAST:event_caraMainMenuItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -465,7 +399,7 @@ public class MainMazeGame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton autoButton;
-    private javax.swing.JMenuItem caraMainMenuItem;
+    private javax.swing.JTextArea caraBermainTextArea;
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu gameMenu;
     private javax.swing.JFileChooser jFileChooser1;
@@ -473,7 +407,6 @@ public class MainMazeGame extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel langkahLabel;
     private javax.swing.JLabel langkahText;
     private javax.swing.JButton loadButton;

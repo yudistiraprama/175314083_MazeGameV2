@@ -70,14 +70,6 @@
                 </MenuItem>
               </SubComponents>
             </Menu>
-            <MenuItem class="javax.swing.JMenuItem" name="caraMainMenuItem">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Cara Bermain"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="caraMainMenuItemActionPerformed"/>
-              </Events>
-            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="exitMenuItem">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Exit"/>
@@ -150,15 +142,15 @@
                       <Component id="tempatPanel" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="8" max="32767" attributes="0"/>
+              <EmptySpace pref="50" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="jScrollPane1" min="-2" pref="305" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                  </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="jScrollPane1" min="-2" pref="305" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -324,11 +316,14 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTextArea" name="jTextArea1">
+        <Component class="javax.swing.JTextArea" name="caraBermainTextArea">
           <Properties>
+            <Property name="editable" type="boolean" value="false"/>
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
             <Property name="text" type="java.lang.String" value="  === WELCOME TO MAZE GAME! ===&#xa;&#xa; Map dapan dipilih secara manual&#xa; dengan menu OPEN atau Map dapat&#xa; dipilih pada menu MAP&#xa;&#xa; Cara menggerakkan pemain :&#xa;&#xa;&#x9;       N(spasi)X&#xa;&#xa; N = Arah Gerakan&#xa; X = Jumlah Langkah&#xa;&#xa; Arah Gerakan :&#xa; U = Up/naik&#xa; D = Down/turun&#xa; L = Left/kiri&#xa; R = Roght/Kanan&#xa;&#xa; OK/Enter = Menjalankan pemain&#xa; UNDO&#x9; = balik ke tempat &#xa;&#x9;   sebelumnya&#xa; AUTO&#x9; = Menuju targe dengan&#xa;&#x9;   otomatis&#xa; SAVE&#x9; = Menyimpan posisi &#xa;&#x9;   terakhir pemain&#xa; LOAD&#x9; = Mengload posisi pemain &#xa;&#x9;   yang di save&#xa;&#xa; *SAVE dan LOAD hanya berlaku &#xa;  untuk map yang sama&#xa;&#xa;&#x9;=== SELAMAT BERMAIN ==="/>
+            <Property name="toolTipText" type="java.lang.String" value=""/>
+            <Property name="focusCycleRoot" type="boolean" value="true"/>
           </Properties>
         </Component>
       </SubComponents>
