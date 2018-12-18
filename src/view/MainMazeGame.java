@@ -33,6 +33,9 @@ public class MainMazeGame extends javax.swing.JFrame {
         langkahText = new javax.swing.JLabel();
         saveButton = new javax.swing.JButton();
         loadButton = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
         menuBar = new javax.swing.JMenuBar();
         gameMenu = new javax.swing.JMenu();
         openMenuItem = new javax.swing.JMenuItem();
@@ -66,18 +69,17 @@ public class MainMazeGame extends javax.swing.JFrame {
             }
         });
 
-        tempatPanel.setBorder(null);
         tempatPanel.setForeground(new java.awt.Color(240, 240, 240));
 
         javax.swing.GroupLayout tempatPanelLayout = new javax.swing.GroupLayout(tempatPanel);
         tempatPanel.setLayout(tempatPanelLayout);
         tempatPanelLayout.setHorizontalGroup(
             tempatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 596, Short.MAX_VALUE)
+            .addGap(0, 630, Short.MAX_VALUE)
         );
         tempatPanelLayout.setVerticalGroup(
             tempatPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 361, Short.MAX_VALUE)
+            .addGap(0, 376, Short.MAX_VALUE)
         );
 
         okButton.setFont(new java.awt.Font("Copperplate Gothic Light", 0, 12)); // NOI18N
@@ -123,6 +125,13 @@ public class MainMazeGame extends javax.swing.JFrame {
                 loadButtonActionPerformed(evt);
             }
         });
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jTextArea1.setText("  === WELCOME TO MAZE GAME! ===\n\n Map dapan dipilih secara manual\n dengan menu OPEN atau Map dapat\n dipilih pada menu MAP\n\n Cara menggerakkan pemain :\n\n\t       N(spasi)X\n\n N = Arah Gerakan\n X = Jumlah Langkah\n\n Arah Gerakan :\n U = Up/naik\n D = Down/turun\n L = Left/kiri\n R = Roght/Kanan\n\n OK/Enter = Menjalankan pemain\n UNDO\t = balik ke tempat \n\t   sebelumnya\n AUTO\t = Menuju targe dengan\n\t   otomatis\n SAVE\t = Menyimpan posisi \n\t   terakhir pemain\n LOAD\t = Mengload posisi pemain \n\t   yang di save\n\n *SAVE dan LOAD hanya berlaku \n  untuk map yang sama\n\n\t=== SELAMAT BERMAIN ===");
+        jScrollPane1.setViewportView(jTextArea1);
+
+        jLabel1.setText("By : Prama & Bayu");
 
         gameMenu.setText("Game");
         gameMenu.addActionListener(new java.awt.event.ActionListener() {
@@ -193,43 +202,55 @@ public class MainMazeGame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(tempatPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(8, 8, 8)
-                .addComponent(perintahLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(perintah, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(8, 8, 8)
+                        .addComponent(perintahLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(okButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(undoButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(autoButton)
-                        .addGap(12, 12, 12)
-                        .addComponent(restartButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(saveButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(loadButton))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(perintah, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(okButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(undoButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(autoButton)
+                                .addGap(12, 12, 12)
+                                .addComponent(restartButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(saveButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(loadButton))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(langkahLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(langkahText, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(langkahLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(langkahText, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(57, Short.MAX_VALUE))
+                        .addGap(37, 37, 37)
+                        .addComponent(tempatPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(35, 35, 35))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(55, Short.MAX_VALUE)
-                .addComponent(tempatPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(langkahLabel, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(langkahText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 28, Short.MAX_VALUE)
+                        .addComponent(tempatPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(langkahLabel, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(langkahText, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane1))
                 .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -243,13 +264,14 @@ public class MainMazeGame extends javax.swing.JFrame {
                         .addComponent(autoButton)
                         .addComponent(restartButton)
                         .addComponent(saveButton)
-                        .addComponent(loadButton)))
+                        .addComponent(loadButton)
+                        .addComponent(jLabel1)))
                 .addContainerGap())
         );
 
         tempatPanel.getAccessibleContext().setAccessibleName("");
 
-        setSize(new java.awt.Dimension(731, 561));
+        setSize(new java.awt.Dimension(1046, 561));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -447,8 +469,11 @@ public class MainMazeGame extends javax.swing.JFrame {
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu gameMenu;
     private javax.swing.JFileChooser jFileChooser1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel langkahLabel;
     private javax.swing.JLabel langkahText;
     private javax.swing.JButton loadButton;
